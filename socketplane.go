@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -14,6 +15,7 @@ func init() {
 }
 
 func main() {
+	fmt.Println("wahaha")
 	app := cli.NewApp()
 	app.Name = "socketplane"
 	app.Usage = "linux container networking"

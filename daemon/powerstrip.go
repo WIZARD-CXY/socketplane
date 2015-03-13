@@ -86,6 +86,7 @@ func psAdapterPostHook(d *Daemon, reqParams adapterRequest) (postResp *adapterPo
 		// start api looks like this /<version>/containers/<cid>/start
 		s := regexp.MustCompile("/").Split(reqParams.ClientRequest.Request, 5)
 		cid := s[3]
+		fmt.Println("docker container id", cid)
 
 		var cfg = &Connection{}
 		var op = ConnectionAdd
@@ -108,6 +109,7 @@ func psAdapterPostHook(d *Daemon, reqParams adapterRequest) (postResp *adapterPo
 			for _, env := range info.Config.Env {
 				val := regexp.MustCompile("=").Split(env, 3)
 				if val[0] == "SP_NETWORK" {
+					fmt.Println("network name is", val[1])
 					cfg.Network = strings.Trim(val[1], " ")
 				}
 			}

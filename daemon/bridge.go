@@ -187,7 +187,9 @@ func ConnectionRPCHandler(d *Daemon) {
 		switch c.Action {
 		case ConnectionAdd:
 			pid, _ := strconv.Atoi(c.Connection.ContainerPID)
+			fmt.Println("PID", pid)
 			connDetails, _ := AddConnection(pid, c.Connection.Network)
+			fmt.Printf("connDetails %v\n", connDetails)
 			c.Connection.OvsPortID = connDetails.Name
 			c.Connection.ConnectionDetails = connDetails
 			d.Connections[c.Connection.ContainerID] = c.Connection
@@ -249,7 +251,9 @@ func AddConnection(nspid int, networkName string) (ovsConnection OvsConnection, 
 		return
 	}
 
-	if err = os.Symlink(filepath.Join(os.Getenv("PROCFS"), strconv.Itoa(nspid), "ns/net"),
+	fmt.Println("haha", os.Getenv("PROCFS"))
+
+	if err = os.Symlink(filepath.Join("/proc", strconv.Itoa(nspid), "ns/net"),
 		filepath.Join("/var/run/netns", strconv.Itoa(nspid))); err != nil {
 		return
 	}
