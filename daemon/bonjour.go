@@ -5,6 +5,7 @@ import (
 
 	log "github.com/socketplane/socketplane/Godeps/_workspace/src/github.com/Sirupsen/logrus"
 	"github.com/socketplane/socketplane/Godeps/_workspace/src/github.com/socketplane/bonjour"
+	"github.com/socketplane/socketplane/datastore"
 )
 
 const DOCKER_CLUSTER_SERVICE = "_docker._cluster"
@@ -27,7 +28,7 @@ type notify struct{}
 
 func (n notify) NewMember(addr net.IP) {
 	log.Info("New Member Added : ", addr)
-	JoinDatastore(addr.String())
+	datastore.Join(addr.String())
 	AddPeer(addr.String())
 }
 func (n notify) RemoveMember(addr net.IP) {

@@ -1,4 +1,4 @@
-package daemon
+package ipam
 
 import (
 	"math"
@@ -12,7 +12,7 @@ import (
 
 const dataStore = "ipam"
 
-func IPAMRequest(subnet net.IPNet) net.IP {
+func Request(subnet net.IPNet) net.IP {
 	bits := bitCount(subnet)
 	bc := int(bits / 8)
 	partial := int(math.Mod(bits, float64(8)))
@@ -29,12 +29,12 @@ func IPAMRequest(subnet net.IPNet) net.IP {
 	pos := testAndSetBit(addrArray)
 	eccerr := ecc.Put(dataStore, subnet.String(), addrArray, currVal)
 	if eccerr == ecc.OUTDATED {
-		return IPAMRequest(subnet)
+		return Request(subnet)
 	}
 	return getIP(subnet, pos)
 }
 
-func IPAMRelease(address net.IP, subnet net.IPNet) bool {
+func Release(address net.IP, subnet net.IPNet) bool {
 	addrArray, _, ok := ecc.Get(dataStore, subnet.String())
 	currVal := make([]byte, len(addrArray))
 	copy(currVal, addrArray)
@@ -45,7 +45,7 @@ func IPAMRelease(address net.IP, subnet net.IPNet) bool {
 	clearBit(addrArray, pos-1)
 	eccerr := ecc.Put(dataStore, subnet.String(), addrArray, currVal)
 	if eccerr == ecc.OUTDATED {
-		return IPAMRelease(address, subnet)
+		return Release(address, subnet)
 	}
 	return true
 }
@@ -115,4 +115,27 @@ func bitCount(addr net.IPNet) float64 {
 	} else {
 		return math.Pow(2, float64(128-mask))
 	}
+}
+
+func setBit(a []byte, k uint) {
+	a[k/8] |= 1 << (k % 8)
+}
+
+func clearBit(a []byte, k uint) {
+	a[k/8] &= ^(1 << (k % 8))
+}
+
+func testBit(a []byte, k uint) bool {
+	return ((a[k/8] & (1 << (k % 8))) != 0)
+}
+
+func testAndSetBit(a []byte) uint {
+	var i uint
+	for i = uint(0); i < uint(len(a)*8); i++ {
+		if !testBit(a, i) {
+			setBit(a, i)
+			return i + 1
+		}
+	}
+	return i
 }

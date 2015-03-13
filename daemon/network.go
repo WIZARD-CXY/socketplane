@@ -8,6 +8,7 @@ import (
 
 	log "github.com/socketplane/socketplane/Godeps/_workspace/src/github.com/Sirupsen/logrus"
 	"github.com/socketplane/socketplane/Godeps/_workspace/src/github.com/socketplane/ecc"
+	"github.com/socketplane/socketplane/ipam"
 )
 
 const networkStore = "network"
@@ -74,7 +75,7 @@ func CreateNetwork(id string, subnet *net.IPNet) (*Network, error) {
 			return nil, errors.New("OVS not connected")
 		}
 		// Interface does not exist, use the generated subnet
-		gateway = IPAMRequest(*subnet)
+		gateway = ipam.Request(*subnet)
 		network = &Network{id, subnet.String(), gateway.String(), vlan}
 		if err = AddInternalPort(ovs, defaultBridgeName, network.ID, vlan); err != nil {
 			return network, err
@@ -114,7 +115,7 @@ func CreateNetwork(id string, subnet *net.IPNet) (*Network, error) {
 	eccerr := ecc.Put(networkStore, id, data, nil)
 	if eccerr == ecc.OUTDATED {
 		releaseVlan(vlan)
-		IPAMRelease(gateway, *subnet)
+		ipam.Release(gateway, *subnet)
 		return CreateNetwork(id, subnet)
 	}
 
@@ -184,4 +185,26 @@ func releaseVlan(vlan uint) {
 	if eccerr == ecc.OUTDATED {
 		releaseVlan(vlan)
 	}
+}
+func setBit(a []byte, k uint) {
+	a[k/8] |= 1 << (k % 8)
+}
+
+func clearBit(a []byte, k uint) {
+	a[k/8] &= ^(1 << (k % 8))
+}
+
+func testBit(a []byte, k uint) bool {
+	return ((a[k/8] & (1 << (k % 8))) != 0)
+}
+
+func testAndSetBit(a []byte) uint {
+	var i uint
+	for i = uint(0); i < uint(len(a)*8); i++ {
+		if !testBit(a, i) {
+			setBit(a, i)
+			return i + 1
+		}
+	}
+	return i
 }

@@ -1,4 +1,4 @@
-package daemon
+package datastore
 
 import (
 	"os"
@@ -11,7 +11,7 @@ const dataDir = "/tmp/socketplane"
 
 var listener eccListener
 
-func InitDatastore(bindInterface string, bootstrap bool) error {
+func Init(bindInterface string, bootstrap bool) error {
 	err := ecc.Start(bootstrap, bootstrap, bindInterface, dataDir)
 	if err == nil {
 		go ecc.RegisterForNodeUpdates(listener)
@@ -19,11 +19,11 @@ func InitDatastore(bindInterface string, bootstrap bool) error {
 	return err
 }
 
-func JoinDatastore(address string) error {
+func Join(address string) error {
 	return ecc.Join(address)
 }
 
-func LeaveDatastore() error {
+func Leave() error {
 	if err := ecc.Leave(); err != nil {
 		log.Error(err)
 		return err
@@ -41,10 +41,10 @@ type eccListener struct {
 func (e eccListener) NotifyNodeUpdate(nType ecc.NotifyUpdateType, nodeAddress string) {
 	if nType == ecc.NOTIFY_UPDATE_ADD {
 		log.Infof("New Node joined the cluster : %s", nodeAddress)
-		AddPeer(nodeAddress)
+		// TODO : Add code here to handle new cluster node case
 	} else if nType == ecc.NOTIFY_UPDATE_DELETE {
 		log.Infof("Node left the cluster : %s", nodeAddress)
-		DeletePeer(nodeAddress)
+		// TODO : Add code here to handle node leaving the cluster case
 	}
 }
 
