@@ -187,7 +187,11 @@ func ConnectionRPCHandler(d *Daemon) {
 		case ConnectionAdd:
 			pid, _ := strconv.Atoi(c.Connection.ContainerPID)
 			fmt.Println("PID", pid)
-			connDetails, _ := AddConnection(pid, c.Connection.Network)
+			connDetails, err := AddConnection(pid, c.Connection.Network)
+			if err != nil {
+				fmt.Printf("err is %+v\n", err)
+				return
+			}
 			fmt.Printf("connDetails %v\n", connDetails)
 			c.Connection.OvsPortID = connDetails.Name
 			c.Connection.ConnectionDetails = connDetails
@@ -220,6 +224,7 @@ func AddConnection(nspid int, networkName string) (ovsConnection OvsConnection, 
 	if networkName == "" {
 		networkName = DefaultNetworkName
 	}
+	fmt.Println("haha network name", networkName)
 
 	bridgeNetwork, err := GetNetwork(networkName)
 	if err != nil {
@@ -232,10 +237,12 @@ func AddConnection(nspid int, networkName string) (ovsConnection OvsConnection, 
 	}
 	// Add a dummy sleep to make sure the interface is seen by the subsequent calls.
 	time.Sleep(time.Second * 1)
+	fmt.Println("newportName is", portName)
 
 	_, subnet, _ := net.ParseCIDR(bridgeNetwork.Subnet)
 
 	ip := IPAMRequest(*subnet)
+	fmt.Println("newIP is", ip)
 	mac := generateMacAddr(ip).String()
 
 	subnetString := subnet.String()
@@ -252,10 +259,11 @@ func AddConnection(nspid int, networkName string) (ovsConnection OvsConnection, 
 
 	fmt.Println("haha", os.Getenv("PROCFS"))
 
-	if err = os.Symlink(filepath.Join("/proc", strconv.Itoa(nspid), "ns/net"),
+	if err = os.Symlink(filepath.Join(os.Getenv("PROCFS"), strconv.Itoa(nspid), "ns/net"),
 		filepath.Join("/var/run/netns", strconv.Itoa(nspid))); err != nil {
 		return
 	}
+	fmt.Println("haha2", os.Getenv("PROCFS"))
 
 	// Lock the OS Thread so we don't accidentally switch namespaces
 	runtime.LockOSThread()
@@ -265,26 +273,31 @@ func AddConnection(nspid int, networkName string) (ovsConnection OvsConnection, 
 	if err != nil {
 		return
 	}
+	fmt.Println("haha3")
 	defer origns.Close()
 
 	targetns, err := netns.GetFromName(strconv.Itoa(nspid))
 	if err != nil {
 		return
 	}
+	fmt.Println("haha4")
 	defer targetns.Close()
 
 	if err = SetInterfaceInNamespaceFd(portName, uintptr(int(targetns))); err != nil {
 		return
 	}
+	fmt.Println("haha5")
 
 	if err = netns.Set(targetns); err != nil {
 		return
 	}
+	fmt.Println("haha6")
 	defer netns.Set(origns)
 
 	if err = InterfaceDown(portName); err != nil {
 		return
 	}
+	fmt.Println("haha7")
 
 	/* TODO : Find a way to change the interface name to defaultDevice (eth0).
 	   Currently using the Randomly created OVS port as is.
@@ -301,10 +314,12 @@ func AddConnection(nspid int, networkName string) (ovsConnection OvsConnection, 
 	if err = SetInterfaceMac(portName, generateMacAddr(ip).String()); err != nil {
 		return
 	}
+	fmt.Println("haha8")
 
 	if err = InterfaceUp(portName); err != nil {
 		return
 	}
+	fmt.Println("haha9")
 
 	if err = SetDefaultGateway(bridgeNetwork.Gateway, portName); err != nil {
 		return

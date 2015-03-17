@@ -54,6 +54,7 @@ func psAdapterPreHook(d *Daemon, reqParams adapterRequest) (preResp *adapterPreR
 	if reqParams.ClientRequest.Body != "" {
 		jsonBody := &dockerclient.ContainerConfig{}
 		err := json.Unmarshal([]byte(reqParams.ClientRequest.Body), &jsonBody)
+		fmt.Printf("haha origin json is %+v \n", jsonBody)
 		if err != nil {
 			fmt.Println("Body JSON unmarshall failed", err)
 		}
@@ -83,10 +84,18 @@ func psAdapterPostHook(d *Daemon, reqParams adapterRequest) (postResp *adapterPo
 	}
 
 	if reqParams.ClientRequest.Request != "" {
-		// start api looks like this /<version>/containers/<cid>/start
 		s := regexp.MustCompile("/").Split(reqParams.ClientRequest.Request, 5)
-		cid := s[3]
-		fmt.Println("docker container id", cid)
+		var cid string
+
+		if strings.HasPrefix(reqParams.ClientRequest.Request, "/v") {
+			// start api looks like this /<version>/containers/<cid>/start
+			cid = s[3]
+
+		} else {
+			// start api looks like this /containers/<cid>/start for the fsouza/go-dockerclient without api version
+			cid = s[2]
+		}
+		fmt.Println("haha docker container id", cid)
 
 		var cfg = &Connection{}
 		var op = ConnectionAdd
@@ -148,6 +157,7 @@ func psAdapter(d *Daemon, w http.ResponseWriter, r *http.Request) *apiError {
 		fmt.Println("Error decodeing JSON", err)
 		//return &apiError{http.StatusInternalServerError, err.Error()}
 	}
+	fmt.Printf("haha get request %+v\n", reqParams)
 
 	var data []byte
 	switch reqParams.Type {

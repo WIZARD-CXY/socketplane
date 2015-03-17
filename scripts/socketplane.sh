@@ -137,7 +137,7 @@ deps() {
     echo ".... Docker Server Version:   1.4 or higher"
     echo "....   Current:               $DOCKER_SVER"
     echo ".... Docker Client Version:   1.16 or higher"
-    echo "....   Current:               $DOCKER_SVER"
+    echo "....   Current:               $DOCKER_CVER"
 }
 
 kernel_opts(){
@@ -305,7 +305,7 @@ start_socketplane() {
         cp $PWD/socketplane.toml /etc/socketplane/socketplane.toml
     fi
 
-    cid=$(docker run --name socketplane -itd --privileged=true \
+    cid=$(docker run -itd --privileged=true \
         -v /etc/socketplane/socketplane.toml:/etc/socketplane/socketplane.toml \
 	-v /var/run/docker.sock:/var/run/docker.sock \
 	-v /usr/bin/docker:/usr/bin/docker -v /proc:/hostproc -e PROCFS=/hostproc \
@@ -327,7 +327,7 @@ start_socketplane() {
 	    cp $PWD/adapters.yml /etc/socketplane
 	fi
 
-	pscid=$(docker run -d --name powerstrip -v /var/run/docker.sock:/var/run/docker.sock \
+	pscid=$(docker run -d -v /var/run/docker.sock:/var/run/docker.sock \
 	    -v /etc/socketplane/adapters.yml:/etc/powerstrip/adapters.yml --net=host  \
 	    clusterhq/powerstrip:v0.0.1)
     fi
@@ -361,7 +361,8 @@ stop_socketplane_image() {
 
     for IMAGE_ID in $(docker ps | grep socketplane/socketplane | awk '{ print $1; }'); do
         log_info "Stopping the SocketPlane container $IMAGE_ID" | indent
-        docker stop ${IMAGE_ID} > /dev/null
+        #docker stop ${IMAGE_ID} > /dev/null
+        docker rm -f ${IMAGE_ID} > /dev/null
     done
 
     if [ -z $(docker ps | grep socketplane/socketplane | awk '{ print $1 }') ]; then
@@ -402,10 +403,12 @@ remove_socketplane() {
         exit 1
     fi
 
-    for IMAGE_ID in $(docker images | grep socketplane/socketplane | awk '{ print $1; }'); do
-        log_info "Removing socketplane image: $IMAGE_ID" | indent
-        docker rmi $IMAGE_ID > /dev/null
-    done
+    #not remove image
+    # for IMAGE_ID in $(docker images | grep socketplane/socketplane | awk '{ print $1; }'); do
+    #     log_info "Removing socketplane image: $IMAGE_ID" | indent
+    #     #not remove image
+    #     docker rmi $IMAGE_ID > /dev/null
+    # done
 }
 
 logs() {
