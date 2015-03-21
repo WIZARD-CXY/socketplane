@@ -12525,9 +12525,7 @@ sysSizeofSockaddrInet6	Godeps/_workspace/src/golang.org/x/net/ipv6/zsys_solaris.
 sysSockaddrInet6	Godeps/_workspace/src/golang.org/x/net/ipv6/zsys_solaris.go	/^type sysSockaddrInet6 struct {$/;"	t
 -cap-add	Makefile	/^	docker run --cap-add=NET_ADMIN --cap-add SYS_ADMIN --net=host --rm -v $(shell pwd):\/go\/src\/github.com\/socketplane\/socketplane -w \/go\/src\/github.com\/socketplane\/socketplane davetucker\/golang-ci:1.3 make test-all-local$/;"	m
 -cap-add	Makefile	/^	docker run --cap-add=NET_ADMIN --cap-add SYS_ADMIN --net=host --rm -v $(shell pwd):\/go\/src\/github.com\/socketplane\/socketplane -w \/go\/src\/github.com\/socketplane\/socketplane davetucker\/golang-ci:1.3 make test-local	$/;"	m
-covermode	Makefile	/^	go test -covermode=count -coverprofile=datastore.cover.out -coverpkg=.\/... .\/ipam$/;"	m
 covermode	Makefile	/^	go test -covermode=count -coverprofile=socketplane.cover.out$/;"	m
-covermode	Makefile	/^	go test -covermode=count -test.short -coverprofile=datastore.cover.out -coverpkg=.\/... .\/ipam$/;"	m
 covermode	Makefile	/^	go test -covermode=count -test.short -coverprofile=socketplane.cover.out$/;"	m
 coverprofile	Makefile	/^	goveralls -coverprofile=socketplane.coverprofile -service=$(CI_SERVICE) -repotoken=$(COVERALLS_TOKEN)$/;"	m
 CFG_BOOTSTRAP	config/configuration.go	/^	CFG_DEBUG     = "debug"$/;"	c
@@ -12673,6 +12671,30 @@ TestClusterJoinRPC	daemon/daemon_test.go	/^func TestClusterJoinRPC(t *testing.T)
 TestDaemonRun	daemon/daemon_test.go	/^func TestDaemonRun(t *testing.T) {$/;"	f
 TestPopulateConnection	daemon/daemon_test.go	/^func TestPopulateConnection(t *testing.T) {$/;"	f
 daemon	daemon/daemon_test.go	/^package daemon$/;"	p
+InitDatastore	daemon/datastore.go	/^func InitDatastore(bindInterface string, bootstrap bool) error {$/;"	f
+JoinDatastore	daemon/datastore.go	/^func JoinDatastore(address string) error {$/;"	f
+LeaveDatastore	daemon/datastore.go	/^func LeaveDatastore() error {$/;"	f
+NotifyKeyUpdate	daemon/datastore.go	/^func (e eccListener) NotifyKeyUpdate(nType ecc.NotifyUpdateType, key string, data []byte) {$/;"	f
+NotifyNodeUpdate	daemon/datastore.go	/^func (e eccListener) NotifyNodeUpdate(nType ecc.NotifyUpdateType, nodeAddress string) {$/;"	f
+NotifyStoreUpdate	daemon/datastore.go	/^func (e eccListener) NotifyStoreUpdate(nType ecc.NotifyUpdateType, store string, data map[string][]byte) {$/;"	f
+daemon	daemon/datastore.go	/^package daemon$/;"	p
+dataDir	daemon/datastore.go	/^const dataDir = "\/tmp\/socketplane"$/;"	c
+eccListener	daemon/datastore.go	/^type eccListener struct {$/;"	t
+listener	daemon/datastore.go	/^var listener eccListener$/;"	v
+IPAMRelease	daemon/ipam.go	/^func IPAMRelease(address net.IP, subnet net.IPNet) bool {$/;"	f
+IPAMRequest	daemon/ipam.go	/^func IPAMRequest(subnet net.IPNet) net.IP {$/;"	f
+bitCount	daemon/ipam.go	/^func bitCount(addr net.IPNet) float64 {$/;"	f
+daemon	daemon/ipam.go	/^package daemon$/;"	p
+dataStore	daemon/ipam.go	/^const dataStore = "ipam"$/;"	c
+getBitPosition	daemon/ipam.go	/^func getBitPosition(address net.IP, subnet net.IPNet) uint {$/;"	f
+getIP	daemon/ipam.go	/^func getIP(subnet net.IPNet, pos uint) net.IP {$/;"	f
+TestGetIpFullMask	daemon/ipam_test.go	/^func TestGetIpFullMask(t *testing.T) {$/;"	f
+TestGetIpPartialMask	daemon/ipam_test.go	/^func TestGetIpPartialMask(t *testing.T) {$/;"	f
+TestIPAMCleanup	daemon/ipam_test.go	/^func TestIPAMCleanup(t *testing.T) {$/;"	f
+TestIPAMInit	daemon/ipam_test.go	/^func TestIPAMInit(t *testing.T) {$/;"	f
+TestIpRelease	daemon/ipam_test.go	/^func TestIpRelease(t *testing.T) {$/;"	f
+TestIpReleasePartialMask	daemon/ipam_test.go	/^func TestIpReleasePartialMask(t *testing.T) {$/;"	f
+daemon	daemon/ipam_test.go	/^package daemon$/;"	p
 CreateDefaultNetwork	daemon/network.go	/^func CreateDefaultNetwork() (*Network, error) {$/;"	f
 CreateNetwork	daemon/network.go	/^func CreateNetwork(id string, subnet *net.IPNet) (*Network, error) {$/;"	f
 DefaultNetworkName	daemon/network.go	/^const DefaultNetworkName = "default"$/;"	c
@@ -12682,21 +12704,17 @@ GetNetwork	daemon/network.go	/^func GetNetwork(id string) (*Network, error) {$/;
 GetNetworks	daemon/network.go	/^func GetNetworks() ([]Network, error) {$/;"	f
 Network	daemon/network.go	/^type Network struct {$/;"	t
 allocateVlan	daemon/network.go	/^func allocateVlan() (uint, error) {$/;"	f
-clearBit	daemon/network.go	/^func clearBit(a []byte, k uint) {$/;"	f
 daemon	daemon/network.go	/^package daemon$/;"	p
 networkStore	daemon/network.go	/^const networkStore = "network"$/;"	c
 releaseVlan	daemon/network.go	/^func releaseVlan(vlan uint) {$/;"	f
-setBit	daemon/network.go	/^func setBit(a []byte, k uint) {$/;"	f
-testAndSetBit	daemon/network.go	/^func testAndSetBit(a []byte) uint {$/;"	f
-testBit	daemon/network.go	/^func testBit(a []byte, k uint) bool {$/;"	f
 vlanCount	daemon/network.go	/^const vlanCount = 4096$/;"	c
 vlanStore	daemon/network.go	/^const vlanStore = "vlan"$/;"	c
-TestCleanup	daemon/network_test.go	/^func TestCleanup(t *testing.T) {$/;"	f
 TestGetEmptyNetworks	daemon/network_test.go	/^func TestGetEmptyNetworks(t *testing.T) {$/;"	f
 TestGetNetwork	daemon/network_test.go	/^func TestGetNetwork(t *testing.T) {$/;"	f
 TestGetNetworks	daemon/network_test.go	/^func TestGetNetworks(t *testing.T) {$/;"	f
-TestInit	daemon/network_test.go	/^func TestInit(t *testing.T) {$/;"	f
+TestNetworkCleanup	daemon/network_test.go	/^func TestNetworkCleanup(t *testing.T) {$/;"	f
 TestNetworkCreate	daemon/network_test.go	/^func TestNetworkCreate(t *testing.T) {$/;"	f
+TestNetworkInit	daemon/network_test.go	/^func TestNetworkInit(t *testing.T) {$/;"	f
 daemon	daemon/network_test.go	/^package daemon$/;"	p
 subnetArray	daemon/network_test.go	/^var subnetArray []*net.IPNet$/;"	v
 AddInternalPort	daemon/ovs_driver.go	/^func AddInternalPort(ovs *libovsdb.OvsdbClient, bridgeName string, portName string, tag uint) error {$/;"	f
@@ -12749,7 +12767,11 @@ SetInterfaceInNamespacePid	daemon/utils.go	/^func SetInterfaceInNamespacePid(nam
 SetInterfaceIp	daemon/utils.go	/^func SetInterfaceIp(name string, rawIp string) error {$/;"	f
 SetInterfaceMac	daemon/utils.go	/^func SetInterfaceMac(name string, macaddr string) error {$/;"	f
 SetMtu	daemon/utils.go	/^func SetMtu(name string, mtu int) error {$/;"	f
+clearBit	daemon/utils.go	/^func clearBit(a []byte, k uint) {$/;"	f
 daemon	daemon/utils.go	/^package daemon$/;"	p
+setBit	daemon/utils.go	/^func setBit(a []byte, k uint) {$/;"	f
+testAndSetBit	daemon/utils.go	/^func testAndSetBit(a []byte) uint {$/;"	f
+testBit	daemon/utils.go	/^func testBit(a []byte, k uint) bool {$/;"	f
 TestChangeInterfaceName	daemon/utils_test.go	/^func TestChangeInterfaceName(t *testing.T) {$/;"	f
 TestCheckRouteOverlaps	daemon/utils_test.go	/^func TestCheckRouteOverlaps(t *testing.T) {$/;"	f
 TestGetDefaultRouteIface	daemon/utils_test.go	/^func TestGetDefaultRouteIface(t *testing.T) {$/;"	f
@@ -12768,35 +12790,7 @@ daemon	daemon/utils_test.go	/^package daemon$/;"	p
 setUp	daemon/utils_test.go	/^func setUp(t *testing.T) tearDown {$/;"	f
 tearDown	daemon/utils_test.go	/^type tearDown func()$/;"	t
 testIface	daemon/utils_test.go	/^const testIface = "foo0"$/;"	c
-Init	datastore/datastore.go	/^func Init(bindInterface string, bootstrap bool) error {$/;"	f
-Join	datastore/datastore.go	/^func Join(address string) error {$/;"	f
-Leave	datastore/datastore.go	/^func Leave() error {$/;"	f
-NotifyKeyUpdate	datastore/datastore.go	/^func (e eccListener) NotifyKeyUpdate(nType ecc.NotifyUpdateType, key string, data []byte) {$/;"	f
-NotifyNodeUpdate	datastore/datastore.go	/^func (e eccListener) NotifyNodeUpdate(nType ecc.NotifyUpdateType, nodeAddress string) {$/;"	f
-NotifyStoreUpdate	datastore/datastore.go	/^func (e eccListener) NotifyStoreUpdate(nType ecc.NotifyUpdateType, store string, data map[string][]byte) {$/;"	f
-dataDir	datastore/datastore.go	/^const dataDir = "\/tmp\/socketplane"$/;"	c
-datastore	datastore/datastore.go	/^package datastore$/;"	p
-eccListener	datastore/datastore.go	/^type eccListener struct {$/;"	t
-listener	datastore/datastore.go	/^var listener eccListener$/;"	v
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-Release	ipam/ipam.go	/^func Release(address net.IP, subnet net.IPNet) bool {$/;"	f
-Request	ipam/ipam.go	/^func Request(subnet net.IPNet) net.IP {$/;"	f
-bitCount	ipam/ipam.go	/^func bitCount(addr net.IPNet) float64 {$/;"	f
-clearBit	ipam/ipam.go	/^func clearBit(a []byte, k uint) {$/;"	f
-dataStore	ipam/ipam.go	/^const dataStore = "ipam"$/;"	c
-getBitPosition	ipam/ipam.go	/^func getBitPosition(address net.IP, subnet net.IPNet) uint {$/;"	f
-getIP	ipam/ipam.go	/^func getIP(subnet net.IPNet, pos uint) net.IP {$/;"	f
-ipam	ipam/ipam.go	/^package ipam$/;"	p
-setBit	ipam/ipam.go	/^func setBit(a []byte, k uint) {$/;"	f
-testAndSetBit	ipam/ipam.go	/^func testAndSetBit(a []byte) uint {$/;"	f
-testBit	ipam/ipam.go	/^func testBit(a []byte, k uint) bool {$/;"	f
-TestCleanup	ipam/ipam_test.go	/^func TestCleanup(t *testing.T) {$/;"	f
-TestGetIpFullMask	ipam/ipam_test.go	/^func TestGetIpFullMask(t *testing.T) {$/;"	f
-TestGetIpPartialMask	ipam/ipam_test.go	/^func TestGetIpPartialMask(t *testing.T) {$/;"	f
-TestInit	ipam/ipam_test.go	/^func TestInit(t *testing.T) {$/;"	f
-TestIpRelease	ipam/ipam_test.go	/^func TestIpRelease(t *testing.T) {$/;"	f
-TestIpReleasePartialMask	ipam/ipam_test.go	/^func TestIpReleasePartialMask(t *testing.T) {$/;"	f
-ipam	ipam/ipam_test.go	/^package ipam$/;"	p
 command_exists	scripts/functions.sh	/^command_exists() {$/;"	f
 indent	scripts/functions.sh	/^indent() {$/;"	f
 log_debug	scripts/functions.sh	/^log_debug() {$/;"	f

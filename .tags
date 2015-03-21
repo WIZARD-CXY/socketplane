@@ -1642,6 +1642,8 @@ INTEGERKEY	Godeps/_workspace/src/github.com/armon/gomdb/txn.go	/^	DUPSORT    = C
 INTEG_TESTS	Godeps/_workspace/src/github.com/hashicorp/memberlist/Makefile	/^	INTEG_TESTS=yes go test .\/...$/;"	m
 INTEG_TESTS	Godeps/_workspace/src/github.com/hashicorp/raft/Makefile	/^	INTEG_TESTS=yes go test -timeout=3s -run=Integ .\/...$/;"	m
 INVALID_HANDLE_VALUE	Godeps/_workspace/src/github.com/armon/gomdb/mdb.c	302;"	d	file:
+IPAMRelease	daemon/ipam.go	/^func IPAMRelease(address net.IP, subnet net.IPNet) bool {$/;"	f
+IPAMRequest	daemon/ipam.go	/^func IPAMRequest(subnet net.IPNet) net.IP {$/;"	f
 IPSECKEY	Godeps/_workspace/src/github.com/miekg/dns/types.go	/^type IPSECKEY struct {$/;"	t
 ISBN	Godeps/_workspace/src/github.com/miekg/dns/privaterr_test.go	/^type ISBN struct {$/;"	t
 IS_BRANCH	Godeps/_workspace/src/github.com/armon/gomdb/mdb.c	748;"	d	file:
@@ -1721,7 +1723,7 @@ Ingest	Godeps/_workspace/src/github.com/armon/go-metrics/inmem.go	/^func (a *Agg
 Init	Godeps/_workspace/src/github.com/hashicorp/consul/command/agent/local.go	/^func (l *localState) Init(config *Config, logger *log.Logger) {$/;"	f
 Init	Godeps/_workspace/src/github.com/hashicorp/consul/consul/mdb_table.go	/^func (t *MDBTable) Init() error {$/;"	f
 Init	Godeps/_workspace/src/github.com/hashicorp/serf/serf/config.go	/^func (c *Config) Init() {$/;"	f
-Init	datastore/datastore.go	/^func Init(bindInterface string, bootstrap bool) error {$/;"	f
+InitDatastore	daemon/datastore.go	/^func InitDatastore(bindInterface string, bootstrap bool) error {$/;"	f
 Initialize	daemon/daemon.go	/^func Initialize() {$/;"	f
 InmemAddr	Godeps/_workspace/src/github.com/hashicorp/raft/inmem_transport.go	/^type InmemAddr struct {$/;"	t
 InmemSignal	Godeps/_workspace/src/github.com/armon/go-metrics/inmem_signal.go	/^type InmemSignal struct {$/;"	t
@@ -1795,9 +1797,9 @@ Join	Godeps/_workspace/src/github.com/hashicorp/consul/command/agent/rpc_client.
 Join	Godeps/_workspace/src/github.com/hashicorp/memberlist/memberlist.go	/^func (m *Memberlist) Join(existing []string) (int, error) {$/;"	f
 Join	Godeps/_workspace/src/github.com/hashicorp/serf/serf/serf.go	/^func (s *Serf) Join(existing []string, ignoreOld bool) (int, error) {$/;"	f
 Join	Godeps/_workspace/src/github.com/socketplane/ecc/ecc.go	/^func Join(address string) error {$/;"	f
-Join	datastore/datastore.go	/^func Join(address string) error {$/;"	f
 JoinCluster	daemon/daemon.go	/^func (d *Daemon) JoinCluster(address string) error {$/;"	f
 JoinCommand	Godeps/_workspace/src/github.com/hashicorp/consul/command/join.go	/^type JoinCommand struct {$/;"	t
+JoinDatastore	daemon/datastore.go	/^func JoinDatastore(address string) error {$/;"	f
 JoinGroup	Godeps/_workspace/src/golang.org/x/net/ipv4/dgramopt_posix.go	/^func (c *dgramOpt) JoinGroup(ifi *net.Interface, group net.Addr) error {$/;"	f
 JoinGroup	Godeps/_workspace/src/golang.org/x/net/ipv4/dgramopt_stub.go	/^func (c *dgramOpt) JoinGroup(ifi *net.Interface, group net.Addr) error {$/;"	f
 JoinGroup	Godeps/_workspace/src/golang.org/x/net/ipv6/dgramopt_posix.go	/^func (c *dgramOpt) JoinGroup(ifi *net.Interface, group net.Addr) error {$/;"	f
@@ -1965,8 +1967,8 @@ Leave	Godeps/_workspace/src/github.com/hashicorp/memberlist/memberlist.go	/^func
 Leave	Godeps/_workspace/src/github.com/hashicorp/serf/serf/serf.go	/^func (s *Serf) Leave() error {$/;"	f
 Leave	Godeps/_workspace/src/github.com/hashicorp/serf/serf/snapshot.go	/^func (s *Snapshotter) Leave() {$/;"	f
 Leave	Godeps/_workspace/src/github.com/socketplane/ecc/ecc.go	/^func Leave() error {$/;"	f
-Leave	datastore/datastore.go	/^func Leave() error {$/;"	f
 LeaveCommand	Godeps/_workspace/src/github.com/hashicorp/consul/command/leave.go	/^type LeaveCommand struct {$/;"	t
+LeaveDatastore	daemon/datastore.go	/^func LeaveDatastore() error {$/;"	f
 LeaveGroup	Godeps/_workspace/src/golang.org/x/net/ipv4/dgramopt_posix.go	/^func (c *dgramOpt) LeaveGroup(ifi *net.Interface, group net.Addr) error {$/;"	f
 LeaveGroup	Godeps/_workspace/src/golang.org/x/net/ipv4/dgramopt_stub.go	/^func (c *dgramOpt) LeaveGroup(ifi *net.Interface, group net.Addr) error {$/;"	f
 LeaveGroup	Godeps/_workspace/src/golang.org/x/net/ipv6/dgramopt_posix.go	/^func (c *dgramOpt) LeaveGroup(ifi *net.Interface, group net.Addr) error {$/;"	f
@@ -2792,7 +2794,7 @@ NotifyJoin	Godeps/_workspace/src/github.com/hashicorp/memberlist/event_delegate.
 NotifyJoin	Godeps/_workspace/src/github.com/hashicorp/serf/serf/event_delegate.go	/^func (e *eventDelegate) NotifyJoin(n *memberlist.Node) {$/;"	f
 NotifyKeyUpdate	Godeps/_workspace/src/github.com/socketplane/ecc/ecc.go	/^func (e eccListener) NotifyKeyUpdate(nType NotifyUpdateType, key string, data []byte) {$/;"	f
 NotifyKeyUpdate	Godeps/_workspace/src/github.com/socketplane/ecc/example/ecc_demo.go	/^func (e eccListener) NotifyKeyUpdate(nType ecc.NotifyUpdateType, key string, data []byte) {$/;"	f
-NotifyKeyUpdate	datastore/datastore.go	/^func (e eccListener) NotifyKeyUpdate(nType ecc.NotifyUpdateType, key string, data []byte) {$/;"	f
+NotifyKeyUpdate	daemon/datastore.go	/^func (e eccListener) NotifyKeyUpdate(nType ecc.NotifyUpdateType, key string, data []byte) {$/;"	f
 NotifyLeave	Godeps/_workspace/src/github.com/hashicorp/memberlist/event_delegate.go	/^func (c *ChannelEventDelegate) NotifyLeave(n *Node) {$/;"	f
 NotifyLeave	Godeps/_workspace/src/github.com/hashicorp/serf/serf/event_delegate.go	/^func (e *eventDelegate) NotifyLeave(n *memberlist.Node) {$/;"	f
 NotifyMerge	Godeps/_workspace/src/github.com/hashicorp/consul/consul/merge.go	/^func (md *lanMergeDelegate) NotifyMerge(members []*serf.Member) (cancel bool) {$/;"	f
@@ -2804,10 +2806,10 @@ NotifyMsg	Godeps/_workspace/src/github.com/hashicorp/memberlist/memberlist_test.
 NotifyMsg	Godeps/_workspace/src/github.com/hashicorp/serf/serf/delegate.go	/^func (d *delegate) NotifyMsg(buf []byte) {$/;"	f
 NotifyNodeUpdate	Godeps/_workspace/src/github.com/socketplane/ecc/ecc.go	/^func (e eccListener) NotifyNodeUpdate(nType NotifyUpdateType, nodeAddress string) {$/;"	f
 NotifyNodeUpdate	Godeps/_workspace/src/github.com/socketplane/ecc/example/ecc_demo.go	/^func (e eccListener) NotifyNodeUpdate(nType ecc.NotifyUpdateType, nodeName string) {$/;"	f
-NotifyNodeUpdate	datastore/datastore.go	/^func (e eccListener) NotifyNodeUpdate(nType ecc.NotifyUpdateType, nodeAddress string) {$/;"	f
+NotifyNodeUpdate	daemon/datastore.go	/^func (e eccListener) NotifyNodeUpdate(nType ecc.NotifyUpdateType, nodeAddress string) {$/;"	f
 NotifyStoreUpdate	Godeps/_workspace/src/github.com/socketplane/ecc/ecc.go	/^func (e eccListener) NotifyStoreUpdate(nType NotifyUpdateType, store string, data map[string][]byte) {$/;"	f
 NotifyStoreUpdate	Godeps/_workspace/src/github.com/socketplane/ecc/example/ecc_demo.go	/^func (e eccListener) NotifyStoreUpdate(nType ecc.NotifyUpdateType, store string, data map[string][]byte) {$/;"	f
-NotifyStoreUpdate	datastore/datastore.go	/^func (e eccListener) NotifyStoreUpdate(nType ecc.NotifyUpdateType, store string, data map[string][]byte) {$/;"	f
+NotifyStoreUpdate	daemon/datastore.go	/^func (e eccListener) NotifyStoreUpdate(nType ecc.NotifyUpdateType, store string, data map[string][]byte) {$/;"	f
 NotifyUpdate	Godeps/_workspace/src/github.com/hashicorp/memberlist/event_delegate.go	/^func (c *ChannelEventDelegate) NotifyUpdate(n *Node) {$/;"	f
 NotifyUpdate	Godeps/_workspace/src/github.com/hashicorp/serf/serf/event_delegate.go	/^func (e *eventDelegate) NotifyUpdate(n *memberlist.Node) {$/;"	f
 NotifyUpdateType	Godeps/_workspace/src/github.com/socketplane/ecc/ecc.go	/^type NotifyUpdateType int$/;"	t
@@ -3308,7 +3310,6 @@ Release	Godeps/_workspace/src/github.com/hashicorp/consul/consul/fsm.go	/^func (
 Release	Godeps/_workspace/src/github.com/hashicorp/raft/integ_test.go	/^func (r *RaftEnv) Release() {$/;"	f
 Release	Godeps/_workspace/src/github.com/hashicorp/raft/net_transport.go	/^func (n *netConn) Release() error {$/;"	f
 Release	Godeps/_workspace/src/github.com/hashicorp/raft/raft_test.go	/^func (m *MockSnapshot) Release() {$/;"	f
-Release	ipam/ipam.go	/^func Release(address net.IP, subnet net.IPNet) bool {$/;"	f
 Reload	Godeps/_workspace/src/github.com/hashicorp/consul/command/agent/rpc_client.go	/^func (c *RPCClient) Reload() error {$/;"	f
 ReloadCh	Godeps/_workspace/src/github.com/hashicorp/consul/command/agent/rpc.go	/^func (i *AgentRPC) ReloadCh() <-chan struct{} {$/;"	f
 ReloadCommand	Godeps/_workspace/src/github.com/hashicorp/consul/command/reload.go	/^type ReloadCommand struct {$/;"	t
@@ -3350,7 +3351,6 @@ Renew	Godeps/_workspace/src/github.com/hashicorp/consul/api/session.go	/^func (s
 Renew	Godeps/_workspace/src/github.com/hashicorp/consul/consul/session_endpoint.go	/^func (s *Session) Renew(args *structs.SessionSpecificRequest,$/;"	f
 Request	Godeps/_workspace/src/github.com/cenkalti/rpc2/codec.go	/^type Request struct {$/;"	t
 Request	Godeps/_workspace/src/github.com/hashicorp/raft/future.go	/^func (a *appendFuture) Request() *AppendEntriesRequest {$/;"	f
-Request	ipam/ipam.go	/^func Request(subnet net.IPNet) net.IP {$/;"	f
 RequestDatacenter	Godeps/_workspace/src/github.com/hashicorp/consul/consul/structs/structs.go	/^func (r *ACLPolicyRequest) RequestDatacenter() string {$/;"	f
 RequestDatacenter	Godeps/_workspace/src/github.com/hashicorp/consul/consul/structs/structs.go	/^func (r *ACLRequest) RequestDatacenter() string {$/;"	f
 RequestDatacenter	Godeps/_workspace/src/github.com/hashicorp/consul/consul/structs/structs.go	/^func (r *ACLSpecificRequest) RequestDatacenter() string {$/;"	f
@@ -4334,8 +4334,6 @@ TestCheck_disabled	Godeps/_workspace/src/github.com/hashicorp/go-checkpoint/chec
 TestChecksWatch_Service	Godeps/_workspace/src/github.com/hashicorp/consul/watch/funcs_test.go	/^func TestChecksWatch_Service(t *testing.T) {$/;"	f
 TestChecksWatch_State	Godeps/_workspace/src/github.com/hashicorp/consul/watch/funcs_test.go	/^func TestChecksWatch_State(t *testing.T) {$/;"	f
 TestCleanup	Godeps/_workspace/src/github.com/socketplane/ecc/ecc_test.go	/^func TestCleanup(t *testing.T) {$/;"	f
-TestCleanup	daemon/network_test.go	/^func TestCleanup(t *testing.T) {$/;"	f
-TestCleanup	ipam/ipam_test.go	/^func TestCleanup(t *testing.T) {$/;"	f
 TestClearAllSessionTimers	Godeps/_workspace/src/github.com/hashicorp/consul/consul/session_ttl_test.go	/^func TestClearAllSessionTimers(t *testing.T) {$/;"	f
 TestClearSessionTimer	Godeps/_workspace/src/github.com/hashicorp/consul/consul/session_ttl_test.go	/^func TestClearSessionTimer(t *testing.T) {$/;"	f
 TestClientEDNS0	Godeps/_workspace/src/github.com/miekg/dns/client_test.go	/^func TestClientEDNS0(t *testing.T) {$/;"	f
@@ -4667,8 +4665,8 @@ TestGetDefaultRouteIface	daemon/utils_test.go	/^func TestGetDefaultRouteIface(t 
 TestGetEmptyNetworks	daemon/network_test.go	/^func TestGetEmptyNetworks(t *testing.T) {$/;"	f
 TestGetGoPath	Godeps/_workspace/src/github.com/laher/goxc/core/core_test.go	/^func TestGetGoPath(t *testing.T) {$/;"	f
 TestGetIfaceForRoute	daemon/utils_test.go	/^func TestGetIfaceForRoute(t *testing.T) {$/;"	f
-TestGetIpFullMask	ipam/ipam_test.go	/^func TestGetIpFullMask(t *testing.T) {$/;"	f
-TestGetIpPartialMask	ipam/ipam_test.go	/^func TestGetIpPartialMask(t *testing.T) {$/;"	f
+TestGetIpFullMask	daemon/ipam_test.go	/^func TestGetIpFullMask(t *testing.T) {$/;"	f
+TestGetIpPartialMask	daemon/ipam_test.go	/^func TestGetIpPartialMask(t *testing.T) {$/;"	f
 TestGetNetwork	daemon/network_test.go	/^func TestGetNetwork(t *testing.T) {$/;"	f
 TestGetNetworkApi	daemon/api_test.go	/^func TestGetNetworkApi(t *testing.T) {$/;"	f
 TestGetNetworkNonExistentApi	daemon/api_test.go	/^func TestGetNetworkNonExistentApi(t *testing.T) {$/;"	f
@@ -4744,6 +4742,8 @@ TestICMPFilter	Godeps/_workspace/src/golang.org/x/net/ipv6/icmp_test.go	/^func T
 TestICMPString	Godeps/_workspace/src/golang.org/x/net/ipv4/icmp_test.go	/^func TestICMPString(t *testing.T) {$/;"	f
 TestICMPString	Godeps/_workspace/src/golang.org/x/net/ipv6/icmp_test.go	/^func TestICMPString(t *testing.T) {$/;"	f
 TestILNP	Godeps/_workspace/src/github.com/miekg/dns/parse_test.go	/^func TestILNP(t *testing.T) {$/;"	f
+TestIPAMCleanup	daemon/ipam_test.go	/^func TestIPAMCleanup(t *testing.T) {$/;"	f
+TestIPAMInit	daemon/ipam_test.go	/^func TestIPAMInit(t *testing.T) {$/;"	f
 TestIPPerInterfaceSinglePacketConnWithSingleGroupListener	Godeps/_workspace/src/golang.org/x/net/ipv6/multicastlistener_test.go	/^func TestIPPerInterfaceSinglePacketConnWithSingleGroupListener(t *testing.T) {$/;"	f
 TestIPPerInterfaceSingleRawConnWithSingleGroupListener	Godeps/_workspace/src/golang.org/x/net/ipv4/multicastlistener_test.go	/^func TestIPPerInterfaceSingleRawConnWithSingleGroupListener(t *testing.T) {$/;"	f
 TestIPSinglePacketConnWithSingleGroupListener	Godeps/_workspace/src/golang.org/x/net/ipv6/multicastlistener_test.go	/^func TestIPSinglePacketConnWithSingleGroupListener(t *testing.T) {$/;"	f
@@ -4766,8 +4766,6 @@ TestInfolnShouldAddSpacesBetweenStringAndNonstring	Godeps/_workspace/src/github.
 TestInfolnShouldAddSpacesBetweenStrings	Godeps/_workspace/src/github.com/Sirupsen/logrus/logrus_test.go	/^func TestInfolnShouldAddSpacesBetweenStrings(t *testing.T) {$/;"	f
 TestInfolnShouldAddSpacesBetweenTwoNonStrings	Godeps/_workspace/src/github.com/Sirupsen/logrus/logrus_test.go	/^func TestInfolnShouldAddSpacesBetweenTwoNonStrings(t *testing.T) {$/;"	f
 TestIngestUserEvent	Godeps/_workspace/src/github.com/hashicorp/consul/command/agent/user_event_test.go	/^func TestIngestUserEvent(t *testing.T) {$/;"	f
-TestInit	daemon/network_test.go	/^func TestInit(t *testing.T) {$/;"	f
-TestInit	ipam/ipam_test.go	/^func TestInit(t *testing.T) {$/;"	f
 TestInitializeSessionTimers	Godeps/_workspace/src/github.com/hashicorp/consul/consul/session_ttl_test.go	/^func TestInitializeSessionTimers(t *testing.T) {$/;"	f
 TestInmemAddr	Godeps/_workspace/src/github.com/hashicorp/raft/inmem_transport_test.go	/^func TestInmemAddr(t *testing.T) {$/;"	f
 TestInmemAddrImpl	Godeps/_workspace/src/github.com/hashicorp/raft/inmem_transport_test.go	/^func TestInmemAddrImpl(t *testing.T) {$/;"	f
@@ -4791,8 +4789,8 @@ TestInvalidSlice	Godeps/_workspace/src/github.com/mitchellh/mapstructure/mapstru
 TestInvalidStreamId	Godeps/_workspace/src/github.com/inconshreveable/muxado/proto/frame/header_test.go	/^func TestInvalidStreamId(t *testing.T) {$/;"	f
 TestInvalidType	Godeps/_workspace/src/github.com/mitchellh/mapstructure/mapstructure_test.go	/^func TestInvalidType(t *testing.T) {$/;"	f
 TestInvalidateSession	Godeps/_workspace/src/github.com/hashicorp/consul/consul/session_ttl_test.go	/^func TestInvalidateSession(t *testing.T) {$/;"	f
-TestIpRelease	ipam/ipam_test.go	/^func TestIpRelease(t *testing.T) {$/;"	f
-TestIpReleasePartialMask	ipam/ipam_test.go	/^func TestIpReleasePartialMask(t *testing.T) {$/;"	f
+TestIpRelease	daemon/ipam_test.go	/^func TestIpRelease(t *testing.T) {$/;"	f
+TestIpReleasePartialMask	daemon/ipam_test.go	/^func TestIpReleasePartialMask(t *testing.T) {$/;"	f
 TestIsConsulNode	Godeps/_workspace/src/github.com/hashicorp/consul/consul/util_test.go	/^func TestIsConsulNode(t *testing.T) {$/;"	f
 TestIsConsulServer	Godeps/_workspace/src/github.com/hashicorp/consul/consul/util_test.go	/^func TestIsConsulServer(t *testing.T) {$/;"	f
 TestIsDomainName	Godeps/_workspace/src/github.com/miekg/dns/labels_test.go	/^func TestIsDomainName(t *testing.T) {$/;"	f
@@ -5039,7 +5037,9 @@ TestNestedTypePointer	Godeps/_workspace/src/github.com/mitchellh/mapstructure/ma
 TestNetListener	Godeps/_workspace/src/github.com/inconshreveable/muxado/proto/session_test.go	/^func TestNetListener(t *testing.T) {$/;"	f
 TestNetListenerAccept	Godeps/_workspace/src/github.com/inconshreveable/muxado/proto/session_test.go	/^func TestNetListenerAccept(t *testing.T) {$/;"	f
 TestNetworkChangeName	Godeps/_workspace/src/github.com/docker/libcontainer/netlink/netlink_linux_test.go	/^func TestNetworkChangeName(t *testing.T) {$/;"	f
+TestNetworkCleanup	daemon/network_test.go	/^func TestNetworkCleanup(t *testing.T) {$/;"	f
 TestNetworkCreate	daemon/network_test.go	/^func TestNetworkCreate(t *testing.T) {$/;"	f
+TestNetworkInit	daemon/network_test.go	/^func TestNetworkInit(t *testing.T) {$/;"	f
 TestNetworkLinkAddDel	Godeps/_workspace/src/github.com/docker/libcontainer/netlink/netlink_linux_test.go	/^func TestNetworkLinkAddDel(t *testing.T) {$/;"	f
 TestNetworkLinkAddMacVlan	Godeps/_workspace/src/github.com/docker/libcontainer/netlink/netlink_linux_test.go	/^func TestNetworkLinkAddMacVlan(t *testing.T) {$/;"	f
 TestNetworkLinkAddMacVtap	Godeps/_workspace/src/github.com/docker/libcontainer/netlink/netlink_linux_test.go	/^func TestNetworkLinkAddMacVtap(t *testing.T) {$/;"	f
@@ -6443,7 +6443,7 @@ bincVdTimestamp	Godeps/_workspace/src/github.com/hashicorp/go-msgpack/codec/binc
 bincVdUnicodeOther	Godeps/_workspace/src/github.com/hashicorp/go-msgpack/codec/binc.go	/^	bincVdSmallInt$/;"	c
 bindLock	Godeps/_workspace/src/github.com/hashicorp/memberlist/memberlist_test.go	/^var bindLock sync.Mutex$/;"	v
 bindNum	Godeps/_workspace/src/github.com/hashicorp/memberlist/memberlist_test.go	/^var bindNum byte = 10$/;"	v
-bitCount	ipam/ipam.go	/^func bitCount(addr net.IPNet) float64 {$/;"	f
+bitCount	daemon/ipam.go	/^func bitCount(addr net.IPNet) float64 {$/;"	f
 block	Godeps/_workspace/src/github.com/hashicorp/hcl/hcl/parse.y	/^block:$/;"	l
 block	Godeps/_workspace/src/golang.org/x/net/ipv4/icmp_linux.go	/^func (f *sysICMPFilter) block(typ ICMPType) {$/;"	f
 block	Godeps/_workspace/src/golang.org/x/net/ipv4/icmp_stub.go	/^func (f *sysICMPFilter) block(typ ICMPType) {$/;"	f
@@ -6560,8 +6560,7 @@ clear	Godeps/_workspace/src/github.com/gorilla/context/context.go	/^func clear(r
 clear	Godeps/_workspace/src/golang.org/x/net/ipv4/control.go	/^func (c *rawOpt) clear(f ControlFlags)      { c.cflags &^= f }$/;"	f
 clear	Godeps/_workspace/src/golang.org/x/net/ipv6/control.go	/^func (c *rawOpt) clear(f ControlFlags)      { c.cflags &^= f }$/;"	f
 clearAllSessionTimers	Godeps/_workspace/src/github.com/hashicorp/consul/consul/session_ttl.go	/^func (s *Server) clearAllSessionTimers() error {$/;"	f
-clearBit	daemon/network.go	/^func clearBit(a []byte, k uint) {$/;"	f
-clearBit	ipam/ipam.go	/^func clearBit(a []byte, k uint) {$/;"	f
+clearBit	daemon/utils.go	/^func clearBit(a []byte, k uint) {$/;"	f
 clearConn	Godeps/_workspace/src/github.com/hashicorp/consul/consul/pool.go	/^func (p *ConnPool) clearConn(conn *Conn) {$/;"	f
 clearConnection	Godeps/_workspace/src/github.com/socketplane/libovsdb/client.go	/^func clearConnection(c *rpc2.Client) {$/;"	f
 clearSessionTimer	Godeps/_workspace/src/github.com/hashicorp/consul/consul/session_ttl.go	/^func (s *Server) clearSessionTimer(id string) error {$/;"	f
@@ -6848,9 +6847,7 @@ core	Godeps/_workspace/src/github.com/laher/goxc/core/constants.go	/^package cor
 core	Godeps/_workspace/src/github.com/laher/goxc/core/core.go	/^package core$/;"	p
 core	Godeps/_workspace/src/github.com/laher/goxc/core/core_test.go	/^package core$/;"	p
 counterEvent	Godeps/_workspace/src/github.com/hashicorp/serf/serf/coalesce_test.go	/^type counterEvent struct {$/;"	t
-covermode	Makefile	/^	go test -covermode=count -coverprofile=datastore.cover.out -coverpkg=.\/... .\/ipam$/;"	m
 covermode	Makefile	/^	go test -covermode=count -coverprofile=socketplane.cover.out$/;"	m
-covermode	Makefile	/^	go test -covermode=count -test.short -coverprofile=datastore.cover.out -coverpkg=.\/... .\/ipam$/;"	m
 covermode	Makefile	/^	go test -covermode=count -test.short -coverprofile=socketplane.cover.out$/;"	m
 coverprofile	Makefile	/^	goveralls -coverprofile=socketplane.coverprofile -service=$(CI_SERVICE) -repotoken=$(COVERALLS_TOKEN)$/;"	m
 create	Godeps/_workspace/src/github.com/hashicorp/consul/api/session.go	/^func (s *Session) create(obj interface{}, q *WriteOptions) (string, *WriteMeta, error) {$/;"	f
@@ -6910,6 +6907,9 @@ daemon	daemon/bridge.go	/^package daemon$/;"	p
 daemon	daemon/bridge_test.go	/^package daemon$/;"	p
 daemon	daemon/daemon.go	/^package daemon$/;"	p
 daemon	daemon/daemon_test.go	/^package daemon$/;"	p
+daemon	daemon/datastore.go	/^package daemon$/;"	p
+daemon	daemon/ipam.go	/^package daemon$/;"	p
+daemon	daemon/ipam_test.go	/^package daemon$/;"	p
 daemon	daemon/network.go	/^package daemon$/;"	p
 daemon	daemon/network_test.go	/^package daemon$/;"	p
 daemon	daemon/ovs_driver.go	/^package daemon$/;"	p
@@ -6920,10 +6920,9 @@ data	Godeps/_workspace/src/github.com/gorilla/context/context.go	/^	mutex sync.R
 data	Godeps/_workspace/src/github.com/laher/goxc/core/core.go	/^	myGoPath := GetGoPathElement(workingDirectory)$/;"	c
 data	Godeps/_workspace/src/github.com/laher/goxc/core/core.go	/^	rdv := RootDirVars{goBin, myGoPath, homeDir, appName, string(os.PathSeparator)}$/;"	c
 dataDir	Godeps/_workspace/src/github.com/socketplane/ecc/example/ecc_demo.go	/^const dataDir = "\/tmp\/ecc"$/;"	c
-dataDir	datastore/datastore.go	/^const dataDir = "\/tmp\/socketplane"$/;"	c
+dataDir	daemon/datastore.go	/^const dataDir = "\/tmp\/socketplane"$/;"	c
 dataFrameSize	Godeps/_workspace/src/github.com/inconshreveable/muxado/proto/frame/data.go	/^const ($/;"	c
-dataStore	ipam/ipam.go	/^const dataStore = "ipam"$/;"	c
-datastore	datastore/datastore.go	/^package datastore$/;"	p
+dataStore	daemon/ipam.go	/^const dataStore = "ipam"$/;"	c
 datat	Godeps/_workspace/src/github.com/gorilla/context/context.go	/^	data  = make(map[*http.Request]map[interface{}]interface{})$/;"	v
 dbACLs	Godeps/_workspace/src/github.com/hashicorp/consul/consul/state_store.go	/^	dbSessionChecks          = "sessionChecks"$/;"	c
 dbChecks	Godeps/_workspace/src/github.com/hashicorp/consul/consul/state_store.go	/^	dbServices               = "services"$/;"	c
@@ -7212,7 +7211,7 @@ ecc	Godeps/_workspace/src/github.com/socketplane/ecc/ecc_test.go	/^package ecc$/
 ecc	Godeps/_workspace/src/github.com/socketplane/ecc/version.go	/^package ecc$/;"	p
 eccListener	Godeps/_workspace/src/github.com/socketplane/ecc/ecc.go	/^type eccListener struct {$/;"	t
 eccListener	Godeps/_workspace/src/github.com/socketplane/ecc/example/ecc_demo.go	/^type eccListener struct {$/;"	t
-eccListener	datastore/datastore.go	/^type eccListener struct {$/;"	t
+eccListener	daemon/datastore.go	/^type eccListener struct {$/;"	t
 eccerror	Godeps/_workspace/src/github.com/socketplane/ecc/ecc.go	/^type eccerror int$/;"	t
 echo	Godeps/_workspace/src/github.com/socketplane/bonjour/echo.go	/^func echo(address string, ip *net.IP) (int, error) {$/;"	f
 echo	Godeps/_workspace/src/github.com/socketplane/libovsdb/client.go	/^func echo(client *rpc2.Client, args []interface{}, reply *[]interface{}) error {$/;"	f
@@ -7526,7 +7525,7 @@ getBasicHandle	Godeps/_workspace/src/github.com/hashicorp/go-msgpack/codec/binc.
 getBasicHandle	Godeps/_workspace/src/github.com/hashicorp/go-msgpack/codec/msgpack.go	/^func (h *MsgpackHandle) getBasicHandle() *BasicHandle {$/;"	f
 getBasicHandle	Godeps/_workspace/src/github.com/hashicorp/go-msgpack/codec/simple.go	/^func (h *SimpleHandle) getBasicHandle() *BasicHandle {$/;"	f
 getBindAddr	Godeps/_workspace/src/github.com/hashicorp/memberlist/memberlist_test.go	/^func getBindAddr() net.IP {$/;"	f
-getBitPosition	ipam/ipam.go	/^func getBitPosition(address net.IP, subnet net.IPNet) uint {$/;"	f
+getBitPosition	daemon/ipam.go	/^func getBitPosition(address net.IP, subnet net.IPNet) uint {$/;"	f
 getBoolValue	Godeps/_workspace/src/github.com/samalba/dockerclient/engine_mock_test.go	/^func getBoolValue(boolString string) bool {$/;"	f
 getBroadcasts	Godeps/_workspace/src/github.com/hashicorp/memberlist/broadcast.go	/^func (m *Memberlist) getBroadcasts(overhead, limit int) [][]byte {$/;"	f
 getClient	Godeps/_workspace/src/github.com/hashicorp/consul/consul/pool.go	/^func (c *Conn) getClient() (*StreamClient, error) {$/;"	f
@@ -7552,7 +7551,7 @@ getICMPFilter	Godeps/_workspace/src/golang.org/x/net/ipv4/sockopt_unix.go	/^func
 getICMPFilter	Godeps/_workspace/src/golang.org/x/net/ipv4/sockopt_windows.go	/^func getICMPFilter(fd syscall.Handle, opt *sockOpt) (*ICMPFilter, error) {$/;"	f
 getICMPFilter	Godeps/_workspace/src/golang.org/x/net/ipv6/sockopt_unix.go	/^func getICMPFilter(fd int, opt *sockOpt) (*ICMPFilter, error) {$/;"	f
 getICMPFilter	Godeps/_workspace/src/golang.org/x/net/ipv6/sockopt_windows.go	/^func getICMPFilter(fd syscall.Handle, opt *sockOpt) (*ICMPFilter, error) {$/;"	f
-getIP	ipam/ipam.go	/^func getIP(subnet net.IPNet, pos uint) net.IP {$/;"	f
+getIP	daemon/ipam.go	/^func getIP(subnet net.IPNet, pos uint) net.IP {$/;"	f
 getIfSocket	Godeps/_workspace/src/github.com/docker/libcontainer/netlink/netlink_linux.go	/^func getIfSocket() (fd int, err error) {$/;"	f
 getIndex	Godeps/_workspace/src/github.com/hashicorp/consul/command/agent/http_test.go	/^func getIndex(t *testing.T, resp *httptest.ResponseRecorder) uint64 {$/;"	f
 getIndex	Godeps/_workspace/src/github.com/hashicorp/consul/consul/mdb_table.go	/^func (t *MDBTable) getIndex(index string, parts []string) (*MDBIndex, []byte, error) {$/;"	f
@@ -7992,8 +7991,6 @@ ioctlReadTermios	Godeps/_workspace/src/github.com/Sirupsen/logrus/terminal_darwi
 ioctlReadTermios	Godeps/_workspace/src/github.com/Sirupsen/logrus/terminal_freebsd.go	/^const ioctlReadTermios = syscall.TIOCGETA$/;"	c
 ioctlReadTermios	Godeps/_workspace/src/github.com/Sirupsen/logrus/terminal_linux.go	/^const ioctlReadTermios = syscall.TCGETS$/;"	c
 ipAssigned	Godeps/_workspace/src/github.com/docker/libcontainer/netlink/netlink_linux_test.go	/^func ipAssigned(iface *net.Interface, ip net.IP) bool {$/;"	f
-ipam	ipam/ipam.go	/^package ipam$/;"	p
-ipam	ipam/ipam_test.go	/^package ipam$/;"	p
 ipv4	Godeps/_workspace/src/golang.org/x/net/ipv4/control.go	/^package ipv4$/;"	p
 ipv4	Godeps/_workspace/src/golang.org/x/net/ipv4/control_bsd.go	/^package ipv4$/;"	p
 ipv4	Godeps/_workspace/src/golang.org/x/net/ipv4/control_pktinfo.go	/^package ipv4$/;"	p
@@ -8487,7 +8484,7 @@ listen	Godeps/_workspace/src/github.com/hashicorp/consul/consul/rpc.go	/^func (s
 listen	Godeps/_workspace/src/github.com/hashicorp/raft/net_transport.go	/^func (n *NetworkTransport) listen() {$/;"	f
 listen	Godeps/_workspace/src/github.com/socketplane/go-fastping/fastping.go	/^func (p *Pinger) listen(netProto string) *net.IPConn {$/;"	f
 listener	Godeps/_workspace/src/github.com/socketplane/ecc/ecc.go	/^var listener eccListener$/;"	v
-listener	datastore/datastore.go	/^var listener eccListener$/;"	v
+listener	daemon/datastore.go	/^var listener eccListener$/;"	v
 listitem	Godeps/_workspace/src/github.com/hashicorp/hcl/hcl/parse.y	/^listitem:$/;"	l
 listitems	Godeps/_workspace/src/github.com/hashicorp/hcl/hcl/parse.y	/^listitems:$/;"	l
 loadChecks	Godeps/_workspace/src/github.com/hashicorp/consul/command/agent/agent.go	/^func (a *Agent) loadChecks(conf *Config) error {$/;"	f
@@ -10090,8 +10087,7 @@ setAll	Godeps/_workspace/src/golang.org/x/net/ipv6/icmp_linux.go	/^func (f *sysI
 setAll	Godeps/_workspace/src/golang.org/x/net/ipv6/icmp_solaris.go	/^func (f *sysICMPv6Filter) setAll(block bool) {$/;"	f
 setAll	Godeps/_workspace/src/golang.org/x/net/ipv6/icmp_stub.go	/^func (f *sysICMPv6Filter) setAll(block bool) {$/;"	f
 setAll	Godeps/_workspace/src/golang.org/x/net/ipv6/icmp_windows.go	/^func (f *sysICMPv6Filter) setAll(block bool) {$/;"	f
-setBit	daemon/network.go	/^func setBit(a []byte, k uint) {$/;"	f
-setBit	ipam/ipam.go	/^func setBit(a []byte, k uint) {$/;"	f
+setBit	daemon/utils.go	/^func setBit(a []byte, k uint) {$/;"	f
 setCDNSKEY	Godeps/_workspace/src/github.com/miekg/dns/zscan_rr.go	/^func setCDNSKEY(h RR_Header, c chan lex, o, f string) (RR, *ParseError, string) {$/;"	f
 setCDS	Godeps/_workspace/src/github.com/miekg/dns/zscan_rr.go	/^func setCDS(h RR_Header, c chan lex, o, f string) (RR, *ParseError, string) {$/;"	f
 setCERT	Godeps/_workspace/src/github.com/miekg/dns/zscan_rr.go	/^func setCERT(h RR_Header, c chan lex, o, f string) (RR, *ParseError, string) {$/;"	f
@@ -12404,11 +12400,9 @@ testACLPolicy	Godeps/_workspace/src/github.com/hashicorp/consul/consul/acl_test.
 testAddressConfig	Godeps/_workspace/src/github.com/hashicorp/consul/api/api_test.go	/^type testAddressConfig struct {$/;"	t
 testAgent	Godeps/_workspace/src/github.com/hashicorp/consul/command/util_test.go	/^func testAgent(t *testing.T) *agentWrapper {$/;"	f
 testAgentWithConfig	Godeps/_workspace/src/github.com/hashicorp/consul/command/util_test.go	/^func testAgentWithConfig(t *testing.T, cb func(c *agent.Config)) *agentWrapper {$/;"	f
-testAndSetBit	daemon/network.go	/^func testAndSetBit(a []byte) uint {$/;"	f
-testAndSetBit	ipam/ipam.go	/^func testAndSetBit(a []byte) uint {$/;"	f
+testAndSetBit	daemon/utils.go	/^func testAndSetBit(a []byte) uint {$/;"	f
 testBincH	Godeps/_workspace/src/github.com/hashicorp/go-msgpack/codec/codecs_test.go	/^	testMsgpackH = &MsgpackHandle{}$/;"	v
-testBit	daemon/network.go	/^func testBit(a []byte, k uint) bool {$/;"	f
-testBit	ipam/ipam.go	/^func testBit(a []byte, k uint) bool {$/;"	f
+testBit	daemon/utils.go	/^func testBit(a []byte, k uint) bool {$/;"	f
 testBuffer	Godeps/_workspace/src/github.com/inconshreveable/muxado/proto/buffer/circular_test.go	/^func testBuffer() *Circular {$/;"	f
 testClient	Godeps/_workspace/src/github.com/hashicorp/consul/consul/client_test.go	/^func testClient(t *testing.T) (string, *Client) {$/;"	f
 testClientConfig	Godeps/_workspace/src/github.com/hashicorp/consul/consul/client_test.go	/^func testClientConfig(t *testing.T, NodeName string) (string, *Config) {$/;"	f

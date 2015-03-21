@@ -249,7 +249,8 @@ start_socketplane() {
         return 1
     fi
 
-    flags="--iface=auto"
+    #auto bind failed
+    flags="--iface=eth1"
 
     bstrap=manual
     ps=yes

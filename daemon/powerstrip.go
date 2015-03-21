@@ -52,14 +52,24 @@ func psAdapterPreHook(d *Daemon, reqParams adapterRequest) (preResp *adapterPreR
 	preResp.ModifiedClientRequest.Body = reqParams.ClientRequest.Body
 
 	if reqParams.ClientRequest.Body != "" {
-		jsonBody := &dockerclient.ContainerConfig{}
-		err := json.Unmarshal([]byte(reqParams.ClientRequest.Body), &jsonBody)
-		fmt.Printf("haha origin json is %+v \n", jsonBody)
-		if err != nil {
-			fmt.Println("Body JSON unmarshall failed", err)
+
+		jsonBody := dockerclient.ContainerConfig{}
+		if err := json.Unmarshal([]byte(reqParams.ClientRequest.Body), &(jsonBody.HostConfig)); err != nil {
+			fmt.Println("json unmarshal failed in preHook")
 		}
 
-		jsonBody.HostConfig.NetworkMode = "none"
+		fmt.Printf("haha get request body json in prehook %+v\n", jsonBody.HostConfig)
+
+		if strings.HasPrefix(jsonBody.HostConfig.NetworkMode, "container") {
+			//if we do not want to modify default docker behaviour, early return
+			fmt.Println("container network mode , do not modify NetworkMode")
+
+			return
+		}
+
+		if jsonBody.HostConfig.NetworkMode == "" {
+			jsonBody.HostConfig.NetworkMode = "none"
+		}
 
 		body, _ := json.Marshal(jsonBody)
 		preResp.ModifiedClientRequest.Body = string(body)
@@ -80,6 +90,20 @@ func psAdapterPostHook(d *Daemon, reqParams adapterRequest) (postResp *adapterPo
 		reqParams.ClientRequest.Method != "DELETE" {
 		fmt.Println("Invalid method: ", reqParams.ClientRequest.Method)
 		postResp.ModifiedServerResponse.Code = 500
+		return
+	}
+
+	jsonBody := dockerclient.ContainerConfig{}
+	if err := json.Unmarshal([]byte(reqParams.ClientRequest.Body), &(jsonBody.HostConfig)); err != nil {
+		fmt.Println("json unmarshal failed in postHook")
+	}
+
+	fmt.Printf("haha get request body json in posthook %+v\n", jsonBody.HostConfig)
+
+	if strings.HasPrefix(jsonBody.HostConfig.NetworkMode, "container") {
+		//if we do not want to modify default docker behaviour, early return
+		fmt.Println("container network mode , do not modify NetworkMode")
+
 		return
 	}
 
