@@ -119,7 +119,6 @@ func psAdapterPostHook(d *Daemon, reqParams adapterRequest) (postResp *adapterPo
 			// start api looks like this /containers/<cid>/start for the fsouza/go-dockerclient without api version
 			cid = s[2]
 		}
-		fmt.Println("haha docker container id", cid)
 
 		var cfg = &Connection{}
 		var op = ConnectionAdd
